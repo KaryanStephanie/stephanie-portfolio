@@ -58,44 +58,59 @@ section{
 .sec1{
     display: none;
     transform: translateY(0) scale(1);
-}    
+    
+}
 
 .sec2{
     display: none;
     transform: translateY(0) scale(1);
+    
 }    
 
 .sec3{
     display: none;
     transform: translateY(0) scale(1);
+    
 }   
 
 .sec4{
     display: none;
     transform: translateY(0) scale(1);
+    
 }    
 
 .sec5{
     display: none;
     transform: translateY(0) scale(1);
+    
 }    
 
-.sec6{
-    display: none;
-    transform: translateY(0) scale(1);
-}    
+//make active pages fade in and out using animation
+.active{
+    display: block;
+    animation: scaleAnim 1s ease-in-out;
+    @keyframes scaleAnim {
+        0%{
+            transform: translateY(-100%) scaleY(0)
+        }
+    }
+        100%{
+            transform: translateY(0) scaleY(1)
+        }
+}
+
 
 //Controls
 .controls{
-    position: fixed;
-    z-index: 10;
+    position: fixed; 
+    z-index: 10; //z-index: larger integer, higher priority in overlapping/cascading
     top: 50%;
     right: 3%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateY(-50%);
+    transform: translateY(-50%); //translateY is used to reposition an element vertically on a 2D plane
 
     .active-btn{
         background-color: var(--color-secondary) !important;
@@ -123,3 +138,48 @@ section{
         }
     }
 }
+
+/*Header-content*/
+.header-content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    .left-header{
+        display: flex;
+        align-items: center;
+        position: relative;
+        .h-shape{
+            transition:all .4s ease-in-out;
+            width: 65%;
+            height: 100%;
+            background-color: var(--color-secondary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            clip-path: polygon(0 0, 34% 0, 100% 100%, 0% 100%);
+        }
+            .image{
+                border-radius: var(--br-sm-2);
+                height: 90%;
+                width: 68%;
+                margin-left: 4rem;
+                background-color: var(--color-black);
+                transition: all .4s ease-in-out;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: all .4s ease-in-out;
+                    filter: grayscale(100%);
+                    &:hover{
+                        filter: grayscale(0%);
+                    }
+                }
+            }
+    }
+}
+
+
+
+/*Independent components*/
